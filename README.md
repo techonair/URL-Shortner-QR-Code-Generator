@@ -14,5 +14,5 @@ Install Requirements:
 
     pip install requirements.txt 
 
-## DEMO
+## Demo
 ![Photos of the website](https://github.com/techonair/URL-Shortner-QR-Code-Generator/blob/786a099bbbe9f70e2ae81cef06b55f66785b0c03/Screenshots/QR%20Code%20functionality.png)
