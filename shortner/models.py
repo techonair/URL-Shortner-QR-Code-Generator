@@ -7,6 +7,7 @@ class Shortner(models.Model):
     total_clicks = models.PositiveIntegerField(default=0)
     long_url = models.URLField()
     short_url = models.CharField(max_length=15, unique=True, blank=True)
+    #QRCode = models.ImageField(null=True, blank=True)
 
     class Meta:
         ordering = ["-created"]
@@ -18,6 +19,7 @@ class Shortner(models.Model):
 
         if not self.short_url:
             self.short_url = get_shortned_url(self)
+            #self.QRCode = get_qr_code(self)
         
         super().save(*args, **kwargs)
     

@@ -1,9 +1,9 @@
-from curses.ascii import HT
 from django.shortcuts import render
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.urls import is_valid_path
+from django.http import Http404, HttpResponseRedirect
 from . models import Shortner
 from . forms import URLShortnerForm
+import pyqrcode
+import png
 
 def home(request):
 
@@ -24,9 +24,13 @@ def home(request):
             new_url = request.build_absolute_uri('/') + shortned_object.short_url
             long_url = shortned_object.long_url
 
+            qrcode = pyqrcode.create(long_url)
+            qrcode.png('static/images/{}.png'.format(new_url[22:]), scale = 3)
+
             context['new_url'] = new_url
             context['long_url'] = long_url
-
+            context['qrcode'] = 'static\images\{}.png'.format(new_url[22:])
+            
             return render(request, template, context)
 
         context['error'] = used_form.errors
